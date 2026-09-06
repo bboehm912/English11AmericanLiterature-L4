@@ -283,15 +283,13 @@ input, textarea, select {
   <!-- TAB: STUDENT WORK CHECKPOINT -->
   <div id="form-tab" class="card tab-content">
     <h3>Student Work Checkpoint & Reflection</h3>
-    <form id="checkpoint-form">
+    <form id="checkpoint-form" onsubmit="event.preventDefault(); window.print();">
       <!-- Dynamic form fields injected by script.js -->
       <button type="submit" class="submit-btn">Print this page and turn into the Red Basket!</button>
-    <form id="checkpoint-form" onsubmit="event.preventDefault(); window.print();">
+    </form>
   </div>
-
-</div>
-
 <script>
+  
 let currentSlide = 1;
 let totalSlides = 1;
 let bellringers = [];
@@ -385,7 +383,7 @@ function moveSlide(dir) {
 }
 
 function renderResources(resources) {
-  // If the JSON has no resources array, leave hardcoded HTML untouched
+  // If the JSON has no resources, keep the hardcoded HTML intact
   if (!resources || resources.length === 0) return;
 
   const container = document.getElementById('resource-list');
@@ -404,7 +402,6 @@ function renderResources(resources) {
     container.appendChild(card);
   });
 }
-
   resources.forEach(res => {
     const card = document.createElement('div');
     card.className = 'resource-card';
