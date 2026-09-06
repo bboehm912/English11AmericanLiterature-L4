@@ -282,8 +282,8 @@ input, textarea, select {
     <h3>Student Work Checkpoint & Reflection</h3>
     <form id="checkpoint-form">
       <!-- Dynamic form fields injected by script.js -->
-      <button type="submit" class="submit-btn">Submit Reflection</button>
-    </form>
+      <button type="submit" class="submit-btn">Print this page and turn into the Red Basket!</button>
+    <form id="checkpoint-form" onsubmit="event.preventDefault(); window.print();">
   </div>
 
 </div>
