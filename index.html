@@ -266,14 +266,17 @@ input, textarea, select {
     </div>
   </div>
 
-  <!-- TAB: RESOURCE HUB -->
-<div id="resource-list">
-  <div class="resource-card">
-    <div>
-      <strong>Haudenosaunee (Iroquoi) Creation Account</strong><br/>
-      <small>Course Reference Document</small>
+<!-- TAB: RESOURCE HUB -->
+<div id="res-tab" class="card tab-content">
+  <h3>Resource Hub</h3>
+  <div id="resource-list">
+    <div class="resource-card">
+      <div>
+        <strong>Haudenosaunee (Iroquois) Creation Account</strong><br/>
+        <small>Course Reference Document</small>
+      </div>
+      <a href="IroquoisOrigins.pdf" target="_blank" rel="noopener noreferrer" class="ctrl-btn">Open Resource</a>
     </div>
-    <a href="IroquoisOrigins.pdf" class="ctrl-btn" target="_blank" rel="noopener noreferrer">Open Resource</a>
   </div>
 </div>
 
@@ -382,8 +385,25 @@ function moveSlide(dir) {
 }
 
 function renderResources(resources) {
+  // If the JSON has no resources array, leave hardcoded HTML untouched
+  if (!resources || resources.length === 0) return;
+
   const container = document.getElementById('resource-list');
   container.innerHTML = '';
+
+  resources.forEach(res => {
+    const card = document.createElement('div');
+    card.className = 'resource-card';
+    card.innerHTML = `
+      <div>
+        <strong>${res.title}</strong><br/>
+        <small>${res.description || ''}</small>
+      </div>
+      <a href="${res.file || res.link}" target="_blank" rel="noopener noreferrer" class="ctrl-btn">Open Resource</a>
+    `;
+    container.appendChild(card);
+  });
+}
 
   resources.forEach(res => {
     const card = document.createElement('div');
